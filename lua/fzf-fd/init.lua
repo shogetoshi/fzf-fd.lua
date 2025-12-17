@@ -7,9 +7,18 @@ require("fzf").default_options = {
     end
 }
 
+local source = 'fd -HI --ignore-file ~/.ignore -c always -t f'
+local options = {
+    "--ansi",
+    "--multi",
+    "--reverse",
+    "--preview 'bat --plain --number --color always {}'",
+    "--preview-window down:70%",
+}
+
 M.run = function()
     coroutine.wrap(function()
-        local result = fzf.fzf("fd -HI --ignore-file ~/.ignore -c always ", "--ansi --multi --reverse")
+        local result = fzf.fzf(source, table.concat(options, " "))
         if result then
             for _, file in ipairs(result) do
                 vim.cmd("edit " .. file)
