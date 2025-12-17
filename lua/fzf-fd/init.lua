@@ -14,6 +14,7 @@ local options = {
     "--reverse",
     "--preview 'bat --plain --number --color always {}'",
     "--preview-window down:70%",
+    "--bind 'alt-h:reload:fd -HI -c always -t f'",
 }
 
 M.run = function()
